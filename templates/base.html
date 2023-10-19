@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock title %}</title>
+
+        <!--Bootstrap Styles-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <!--Custom Styles-->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+
+        <!--Wrapper-->
+        <div class="wrapper">
+            {% include 'include/navbar.html' %}
+
+                {% block header %}{% endblock header %}
+
+                <!--Main-->
+                <main class="main">
+                    <div class="container">
+
+                        {% block content %}
+
+                        {% endblock content %}
+
+                    </div>
+                </main>
+
+            {% include 'include/footer.html' %}
+
+        </div>
+
+        <!--Bootstrap Scripts-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+        <!--Custom Scripts-->
+        <script src="{% static 'js/index.js' %}"></script>
+    </body>
+
+</html>

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock title %}
+
+{% block content %}
+    <!--Section SignUp-->
+    <section class="signup">
+        <div class="signup__body">
+            <div class="signup-forms__wrapper element-animation">
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <h2 class="text-center signup__title">Signup</h2>
+                        <form method="post" action="{% url 'signup' %}">
+                            {% if form.non_field_errors %}
+                                <div class="form-error">
+                                    <div class="form-error__wrapper">
+                                        <p class="form-error__massage">
+                                            {{ form.non_field_errors }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% csrf_token %}
+                            {% for f in form %}
+                                <div class="form-group element-animation">
+                                    {{ f }}
+                                </div>
+                            {% if f.errors %}
+                                <div class="form-error">
+                                    <div class="form-error__wrapper">
+                                        <p class="form-error__massage">
+                                            {{ f.errors }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% endfor %}
+                            <div class="signup__btn element-animation">
+                                <button type="submit" class="btn btn-primary signup__button">Signup</button>
+                                <a href="{% url 'login' %}" class="btn btn-primary login__button">Login</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock content %}

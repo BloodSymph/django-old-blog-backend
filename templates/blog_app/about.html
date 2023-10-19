@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Page{% endblock title %}
+
+{% block content %}
+    <!--Section About-->
+    <section class="about">
+        <div class="about__body">
+            <div class="about__text">
+                <h2 class="about__title">About Me :)</h2>
+                <p class="about__description element-animation">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+                    Atque autem blanditiis consequatur delectus est ex exercitationem, hic id illum ipsa maiores non nulla officiis<br>
+                    quisquam quo sed sint ut vel.
+                </p>
+            </div>
+            <div class="about__buttons">
+                <div class="about__buttons-space">
+                    <a href="#" class="btn btn-primary about__btn" id="about-slider">
+                        <span class="about__slider-img">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-down" viewBox="0 0 16 16" >
+                                <path class="slider-color" fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                         </span>
+                        <span class="about__slider-text">My Skills</span>
+                    </a>
+                </div>
+                <div class="about__buttons-space">
+                    <a href="{% url 'blog' %}" class="btn btn-primary about__btn">Blog Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section Skills-->
+    <section class="skills">
+
+        <div class="skills__body">
+            <div class="skills__text">
+                <h2 class="skills__title">My current skills!</h2>
+                <p class="skills__description element-animation">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+                    A aperiam autem blanditiis, deserunt dicta est, explicabo facilis, ipsum molestiae nam nisi praesentium unde ut vero.
+                </p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="card skills-cards element-animation">
+                        <img src="{% static 'img/react.png' %}" class="card-img-top" alt="react-img">
+                        <div class="card-body skills-cards-text">
+                            <h5 class="card-title skills-cards-title">Skill 1</h5>
+                            <p class="card-text skills-cards-description element-animation">Description of Skill 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card skills-cards element-animation">
+                        <img src="{% static 'img/python-django.png' %}" class="card-img-top" alt="">
+                        <div class="card-body skills-cards-text">
+                            <h5 class="card-title skills-cards-title">Skill 2</h5>
+                            <p class="card-text skills-cards-description element-animation">Description of Skill 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card skills-cards element-animation">
+                        <img src="{% static 'img/basic.jpg' %}" class="card-img-top" alt="">
+                        <div class="card-body skills-cards-text">
+                            <h5 class="card-title skills-cards-title">Skill 3</h5>
+                            <p class="card-text skills-cards-description element-animation">Description of Skill 3</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Current Post Page{% endblock title %}
+
+{% block content %}
+    <!--Current Post-->
+    <section class="current-post">
+        <div class="current-post__body">
+
+            <div class="current-post__block">
+                <h4 class="blog-post__title">{{ current_post.title }}</h4>
+                <p class="post-date element-animation">{{ current_post.time_update|date:"d-m-Y" }}</p>
+                <p class="blog-post__description element-animation">{{ current_post.content }}</p>
+            </div>
+
+            {% if user.is_authenticated %}
+                <div class="comment-form__wrapper element-animation">
+                    <form class="comment-forms" method="post">
+                        {% csrf_token %}
+                        {% for f in form %}
+                        <div class="form-group element-animation">
+                            <label for="comment" class="form-label">{{ f.label }}</label>
+                            {{ f }}
+                        </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary comment__button">Submit</button>
+                    </form>
+                </div>
+            {% else %}
+
+               <div class="current-post__alert">
+                  <h4 class="alert__title element-animation">Please signup or login for make a comments!!!</h4>
+               </div>
+
+            {% endif %}
+
+            <div class="current-post__comments">
+
+                <h4 class="comments__title">Comments!</h4>
+
+                {% for comment in comments %}
+                    <div class="card mb-3 comments__cards element-animation">
+                        <div class="card-body">
+                            <h5 class="card-title comment__name">{{ comment.author }}</h5>
+                            <p class="card-text comment__message element-animation">{{ comment.comment_message }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

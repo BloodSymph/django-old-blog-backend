@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block content %}
+    <!--Section Contact-->
+    <section class="contact">
+        <div class="contact__body">
+            <div class="contact-forms__wrapper element-animation">
+
+                <div class="container mt-5 contact__items">
+                    <h2 class="contact__title">Contact With Me!</h2>
+                    <form class="contact__forms" method="post" action="{% url 'contact' %}">
+
+                        {% if form.non_field_errors %}
+                            <div class="form-error">
+                                <div class="form-error__wrapper">
+                                    <p class="form-error__massage">
+                                        {{ form.non_field_errors }}
+                                    </p>
+                                    </div>
+                                </div>
+                        {% endif %}
+
+                        {% csrf_token %}
+                        {% for f in form %}
+                            <div class="form-group element-animation">
+                                {{ f }}
+                            </div>
+                            {% if f.errors %}
+                                <div class="form-error">
+                                    <div class="form-error__wrapper">
+                                        <p class="form-error__massage">
+                                            {{ f.errors }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="contact__btn element-animation">
+                            <button type="submit" class="btn btn-primary contact__button">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

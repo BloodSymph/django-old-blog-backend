@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog Page{% endblock %}
+
+{% block content %}
+    <!--Section Blog-->
+    <section class="blog-posts">
+        <div class="blog-posts__body">
+
+            <div class="blog-posts__text">
+                <h2 class="blog-posts__title">My Personal Blog!</h2>
+                <p class="blog-posts__description element-animation">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br>
+                    Adipisci distinctio doloribus esse nostrum, obcaecati odit sequi. Atque dolore eius maiores pariatur quidem.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+
+                    {% for p in posts %}
+                        <div class="blog-post element-animation">
+                            <h4 class="blog-post__title">{{ p.title }}</h4>
+                            <p class="post-date element-animation">{{ p.time_update|date:"d-m-Y" }}</p>
+                            <p class="blog-post__description element-animation">{{ p.content|truncatewords:50 }}</p>
+                            <a href="{{ p.get_absolute_url }}" class="btn btn-primary read-more__button">Read More</a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card category-card element-animation">
+
+                        <h5 class="card-header category-card__title">Categories</h5>
+
+                        <div class="card-body">
+
+                            <ul class="list-group">
+
+                                {% if category_selected == 0 %}
+                                   <li class="list-group-item selected__category">
+                                       <p class="list-group__active-link element-animation">
+                                            All Categories
+                                        </p>
+                                   </li>
+                                {% else %}
+                                    <li class="list-group-item">
+                                        <a href="{% url 'blog' %}" class="list-group__link element-animation">
+                                            All Categories
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% for c in categories %}
+                                    {% if c.blogposts__count > 0 %}
+                                        {% if c.pk == category_selected %}
+                                            <li class="list-group-item selected__category">
+                                               <p class="list-group__active-link element-animation">
+                                                    {{ c.name }}
+                                                </p>
+                                           </li>
+                                        {% else %}
+                                        <li class="list-group-item">
+                                            <a href="{{ c.get_absolute_url }}" class="list-group__link element-animation">
+                                                {{ c.name }}
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <div class="paginator-section element-animation">
+                        <div class="paginator-section__body">
+
+                            {% if page_obj.has_other_pages %}
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for pages in paginator.page_range %}
+                                        {% if page_obj.number == pages %}
+                                            <li class="page-item"><p class="page-link selected__paginator">{{ pages }}</p></li>
+                                        {% elif pages >= page_obj.number|add:-1 and pages <= page_obj.number|add:1 %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ pages }}">{{ pages }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+
+                                </ul>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+{% endblock content %}

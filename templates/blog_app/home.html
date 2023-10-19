@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock title %}
+
+{% block header %}
+    <!--Header-->
+    <header class="header">
+        <div class="container">
+            <div class="header__body">
+                <div class="header__text">
+                    <h1 class="header__title">Welcome to My personal blog!</h1>
+                    <div class="header__description element-animation">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+                        Ad asperiores dolore ea eius fugit voluptates.
+                    </div>
+                </div>
+                <div class="header__slider">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-chevron-down" viewBox="0 0 16 16" id="header-hover__slider">
+                        <path class="slider-color" fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock header %}
+
+{% block content %}
+    <!--Section Home-->
+    <section class="home-section">
+        <div class="home-section__body">
+            <div class="home-section__text">
+                <h2 class="home-section__title">This personal blog project created by using Django</h2>
+                <p class="home-section__description element-animation">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida ante sed mi tristique tincidunt. Morbi vehicula nunc in facilisis porta. Duis rhoncus bibendum orci, a aliquam lacus iaculis nec.</p>
+                <p class="home-section__description element-animation">Nullam elementum ex eu massa fermentum, in luctus purus pellentesque. Sed vel scelerisque lectus, eu sodales nisl. Integer a arcu sapien. Nam pellentesque placerat diam vitae tincidunt.</p>
+            </div>
+            <div class="home-section__button">
+                <div class="home-section__button-space">
+                    <a href="{% url 'about' %}" class="btn btn-primary learn-more__btn">Learn More</a>
+                </div>
+                <div class="home-section__button-space">
+                    <a href="{% url 'blog' %}" class="btn btn-primary learn-more__btn">Blog Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
